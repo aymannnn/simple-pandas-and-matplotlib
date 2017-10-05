@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.00in]{geometry}
+\usepackage{amssymb,amsmath}
+\setlength{\parskip}{.75em}
+
+\begin{document}
+
+\title{%
+    Python Data Analysis Guide \\
+}
+\author{Ayman Ali}
+\date{}
+\maketitle
+
+\clearpage
+
+% Table of Contents
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+
+\section{Dataframe Manipulation with Pandas}
+\begin{enumerate}
+    \item Create dataframes based on value in column:
+    \begin{verbatim}
+new_df = df.loc[df['Column'] == value]
+    \end{verbatim}
+    \item Drop columns:
+    \begin{verbatim}
+drop_columns = ['Column 1', 'Column 2', 'Column 3']
+new_df = df.drop(drop_columns, axis = 1)
+    \end{verbatim}
+    \item Select rows by index (works with slicing as well):
+    \begin{verbatim}
+rows = df.iloc[index]
+    \end{verbatim}
+    \item Select row and column by index (can use slicing on both):
+    \begin{verbatim}
+new_df = df.iloc[index_of_row, index_of_column]
+    \end{verbatim}
+    \item Replace values:
+    \begin{verbatim}
+new_df = df.replace(to_replace = value_to_replace,
+                    value = value_to_replace_with)
+    \end{verbatim}
+\end{enumerate}
+
+\section{Graphing with Matplotlib}
+\subsection{General Setup}
+\begin{enumerate}
+    \item For the imports:
+    \begin{verbatim}
+import matplotlib.pyplot as plt
+# if you want to see what styles you can pick from
+plt.style.available
+# personal preference
+plt.style.use('bmh')
+    \end{verbatim}
+    \item Set up a graph that you're about to plot with:
+    \begin{verbatim}
+'''
+If both columns and rows are greater than 1, then ax will be a (row, column)
+dimensional array. Otherwise, it'll be a one-dimensional array, with either
+(rows) or (columns) depending on which one is greater than 1. You can access
+each axis with standard indexing (i.e. ax[1][2] will give you the axes of
+the graph in row 2 and column 3)
+''' 
+fig, ax = plt.subplots(nrows = num_rows, ncols = num_cols,
+                       sharex = boolean, sharey = boolean, dpi = integer,
+                       figsize = (width, height))
+    \end{verbatim}
+    \item Titles:
+    \begin{verbatim}
+# Individual axis titles with
+ax.set_title('string')
+# For a general graph title, use text boxes (next section)
+    \end{verbatim}
+    \item Adding text boxes to the figure:
+    \begin{verbatim}
+# Find all kwargs at the following URL:
+# https://matplotlib.org/api/text_api.html#matplotlib.text.Text
+# Some of the more useful kwargs that I use are:
+# verticalalignment ('center', 'top', 'bottom', 'baseline') and
+# horizontalalignment ('center', 'right', 'left')
+fig.text(double_xloc, double_yloc, 'text', **kwargs)
+    \end{verbatim}
+    \item Finishing the plot:
+    \begin{verbatim}
+# If you had a label anywhere then make sure to call it
+plt.legend(fontsize = integer or None)
+plt.savefig(file_path)
+plt.close()
+plt.clf()
+    \end{verbatim}
+\end{enumerate}
+\subsection{Plot Types}
+\begin{enumerate}
+    \item Standard plot:
+    \begin{verbatim}
+# fill in 
+    \end{verbatim}
+    \item Scatter:
+    \begin{verbatim}
+# fill in 
+    \end{verbatim}
+    \item Bar graphs:
+    \begin{verbatim}
+spacing = double_val
+plt.bar(x_values +/-/nothing spacing, y_vals, width = spacing,
+        align = 'center', color = any matplotlib color)
+    \end{verbatim}
+    \item Errorbars:
+    \begin{verbatim}
+axis.errorbar(x_vals, y_vals, xerr = error_x, yerr = error_y,
+              markersize = integer,
+              lolims / uplims / xlolims / xuplims = optional booleans)
+    \end{verbatim}
+\end{enumerate}
+
+\subsection{Misc.}
+\begin{enumerate}
+    \item Custom tick marks and steps:
+    \begin{verbatim}
+plt.xticks(np.arange(start = start_val, stop = stop_val, step = step_val))
+plt.yticks(np.arange(start = start_val, stop = stop_val, step = step_val))
+    \end{verbatim}
+\end{enumerate}
+
+
+\end{document}
